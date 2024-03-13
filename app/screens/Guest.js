@@ -5,8 +5,11 @@ import Textinputcomp from '../components/Textinputcom'
 
 export default function Guest() {
   return (
-    <View style={{flex:1}}>
-            <Appheader />
+    <View style={{flex:1,backgroundColor:"#ffffff"}}>
+            <Appheader
+            name={"Identify Yourself"}
+            
+            />
             <View style={{ flex: 1,  justifyContent: "center", alignItems: "center" }}>
             <View style={styles.first}>
                

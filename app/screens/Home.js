@@ -18,8 +18,9 @@ export default function Home(props) {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <Appheader />
+    <View style={{ flex: 1,backgroundColor:"#ffffff" }}>
+      <Appheader 
+      name={'Identify Yourself'}/>
       <View style={{ flex: 1, flexDirection: "row", margin: 10, justifyContent: "center", alignItems: "center" }}>
         <TouchableOpacity onPress={() => handleContainerPress('Employee')}>
           <View style={[styles.firstcontainer, selectedContainer === 'Employee' && styles.selectedContainer]}>

@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Appheader from '../components/Appheader'
 import Textinputcomp from '../components/Textinputcom'
 
-export default function Employee() {
+export default function Employee(props) {
     return (
-        <View style={{flex:1}}>
-            <Appheader />
+        <View style={{flex:1,backgroundColor:"#ffffff"}}>
+            <Appheader 
+            name={"Identify Yourself"}
+            />
             <View style={{ flex: 1,  justifyContent: "center", alignItems: "center" }}>
             <View style={styles.first}>
                 <Textinputcomp
@@ -15,9 +17,11 @@ export default function Employee() {
                 <Textinputcomp
                     name={"Company Name"}
                 />
+                <TouchableOpacity onPress={()=> props.navigation.navigate('Feedback')}>
                 <View style={styles.button}>
                     <Text style={{ color: "#ffffff" }}>Login</Text>
                 </View>
+                </TouchableOpacity>
             </View>
             </View>
 
