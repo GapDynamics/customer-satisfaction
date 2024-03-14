@@ -1,18 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity,Image } from 'react-native';
 import Appheader from '../components/Appheader';
 import Textinputcomp from '../components/Textinputcom';
 
 export default function Feedback(props) {
     const [selectedRating, setSelectedRating] = useState(null);
+    const [submitReview, setSubmitReview] = useState(false);
+    const [review, setReview] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [questionNumber, setQuestionNumber] = useState(0);
+    const [answers, setAnswers] = useState([]);
     const handleRatingPress = (rating) => {
-        setSelectedRating(rating);
+       
+        const payload={
+            "questionNumber":questionNumber+1,
+            "review_id":review.id,
+            "answerId":rating
+        }
+        setAnswers(prevList=>[...prevList,payload])
+        if(questionNumber< review.questions.length-1){
+            setQuestionNumber(prev=>prev+1);
+       
+            console.log('questionNumber', questionNumber)
+        }else{
+            setSelectedRating(rating);
+            setSubmitReview(true);
+         
+        }
+
     };
+   
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+    
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://44b2-2407-d000-a-96b1-d851-c3e5-cd83-7612.ngrok-free.app/api/active-review-questions');
+        const json = await response.json();
+        setReview(json.data);
+        setLoading(false);
+        console.log('json', json.data)
+      } catch (error) {
+        setLoading(false);
+
+        console.error('Error fetching data:', error);
+      }
+    };
+    const submitMyReview = async()=>{
+        console.log('answers', answers)
+    }
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1,backgroundColor:"#ffffff" }}>
             <Appheader name={"Add Notes"} />
+            {
+                loading?null:
+            
             <View style={styles.container}>
-                <Text style={{ color: "black", fontWeight: "bold", fontSize: 30,alignSelf:"center", marginBottom:20}}>How satisfied are you with your overall experience today?</Text>
+                
+
+             <Text style={{ color: "black", fontWeight: "bold", fontSize: 30,alignSelf:"center", marginBottom:20}}>{review.questions[questionNumber]["title"]}</Text>
+                        
                 <View style={{flexDirection:"row",width:Dimensions.get('window').width * 0.9,justifyContent:"space-between",paddingHorizontal:25}}>
                 <TouchableOpacity onPress={() => handleRatingPress(1)}>
                         <View style={[styles.firstcontainer, selectedRating === 1 && styles.selectedContainer]}>
@@ -47,7 +96,10 @@ export default function Feedback(props) {
                 </TouchableOpacity>
                 </View>
             </View>
-
+}
+{
+    submitReview?<TouchableOpacity onPress={()=>submitMyReview()}><Text>submit</Text></TouchableOpacity>:null
+}
         </View>
     );
 }

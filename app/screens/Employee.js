@@ -4,6 +4,10 @@ import Appheader from '../components/Appheader'
 import Textinputcomp from '../components/Textinputcom'
 
 export default function Employee(props) {
+  const [name, setName] = useState('');
+  const [companyname, setcompanyName] = useState('');
+
+
     return (
         <View style={{flex:1,backgroundColor:"#ffffff"}}>
             <Appheader 
@@ -11,6 +15,10 @@ export default function Employee(props) {
             />
             <View style={{ flex: 1,  justifyContent: "center", alignItems: "center" }}>
             <View style={styles.first}>
+                <View style={{marginBottom:30,alignItems:"center",width:Dimensions.get('window').width * 0.45}}>
+            <Text style={{fontSize:20,fontWeight:"bold",color:"#111827"}}>Welcome back!</Text>
+                <Text  style={{color:"#111827"}}>Please login to access your account. </Text>
+                </View >
                 <Textinputcomp
                     name={"Your Name"}
                 />
@@ -31,7 +39,7 @@ export default function Employee(props) {
 
 const styles = StyleSheet.create({
     first: {
-        height: Dimensions.get('window').height * 0.47,
+        height: Dimensions.get('window').height * 0.56,
         width: Dimensions.get('window').width * 0.45,
         borderRadius: 10,
         alignItems: "center",
@@ -42,10 +50,10 @@ const styles = StyleSheet.create({
     button: {
         width: Dimensions.get('window').width * 0.35,
         height: Dimensions.get('window').width * 0.04,
-        backgroundColor: "#605F9B",
-        borderRadius: 9,
+        backgroundColor: "#004436",
+        borderRadius: 32,
         alignItems: "center", justifyContent: "center",
-        marginTop: 25
+        marginTop: 30
     }
 
 })

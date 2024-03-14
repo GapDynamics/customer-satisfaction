@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'rea
 import Appheader from '../components/Appheader';
 import { useNavigation } from '@react-navigation/native';
 import Appbutton from '../components/Appbutton';
+import Logoheader from '../components/Logoheader';
 
 export default function Home(props) {
   const navigation = useNavigation();
@@ -19,8 +20,8 @@ export default function Home(props) {
 
   return (
     <View style={{ flex: 1,backgroundColor:"#ffffff" }}>
-      <Appheader 
-      name={'Identify Yourself'}/>
+            <Logoheader icn={"keyboard-backspace"} value={2} />
+      
       <View style={{ flex: 1, flexDirection: "row", margin: 10, justifyContent: "center", alignItems: "center" }}>
         <TouchableOpacity onPress={() => handleContainerPress('Employee')}>
           <View style={[styles.firstcontainer, selectedContainer === 'Employee' && styles.selectedContainer]}>
@@ -35,7 +36,6 @@ export default function Home(props) {
           </View>
         </TouchableOpacity>
       </View>
-     
     </View>
   );
 }
@@ -47,12 +47,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#666666"
+    backgroundColor: '#C6DBD7', 
+    marginHorizontal: 5 
   },
   selectedContainer: {
-    borderColor: '#605F9B',
-    backgroundColor: '#E5E4FF', // Light red background color
-    opacity:5
+    borderColor: '#004436', 
+    borderWidth: 2, 
   }
 });

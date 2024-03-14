@@ -50,9 +50,9 @@ export default function Appheader({name}) {
                 style={{ width: "100%", height: 40 }}
                 minimumValue={0}
                 maximumValue={10}
-                minimumTrackTintColor="#605F9B"
-                maximumTrackTintColor="#605F9B"
-                thumbTintColor='#605F9B'
+                minimumTrackTintColor="#004436"
+                maximumTrackTintColor="#004436"
+                thumbTintColor='#004436'
                 value={.5}
                 onValueChange={value => setRange(value)}
             />
