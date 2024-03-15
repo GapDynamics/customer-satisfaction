@@ -16,13 +16,19 @@ export default function Language(props) {
         } else if (language === 'Hindi') {
             navigation.navigate("Letsgo");
         } else if (language === 'Arabic') {
-            navigation.navigate("Feedback");
+            navigation.navigate("Splash");
         }
     };
 
     return (
         <View style={{ flex: 1, backgroundColor:"#ffffff" }}>
-            <Logoheader icn={"keyboard-backspace"} value={1} />
+              <Logoheader icn={"keyboard-backspace"} value={1}
+            isLogo={true}
+            // name={"Feedback"}
+            isLast={true}
+            // Profilename={"Dev Moaz"}
+          
+            />
             <View style={styles.container}>
                 <Text style={{ color: "black", fontWeight: "bold", fontSize: 30, alignSelf:"center", marginBottom:20}}>How satisfied are you with your overall experience today?</Text>
                 <View style={{ flexDirection:"row", width:Dimensions.get('window').width * 0.55, justifyContent:"space-between", paddingHorizontal:25 }}>
@@ -35,13 +41,13 @@ export default function Language(props) {
                     <TouchableOpacity onPress={() => { handleRatingPress(2); navigateToNextScreen('Hindi'); }}>
                         <View style={[styles.firstcontainer, selectedRating === 2 && styles.selectedContainer]}>
                             <Image source={require('../assets/images/hindi.png')} />
-                            <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Hindi</Text>
+                            <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>हिंदी</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { handleRatingPress(3); navigateToNextScreen('Arabic'); }}>
                         <View style={[styles.firstcontainer, selectedRating === 3 && styles.selectedContainer]}>
                             <Image source={require('../assets/images/arabic.png')} />
-                            <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Arabic</Text>
+                            <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>عربي</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

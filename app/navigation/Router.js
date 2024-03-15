@@ -22,6 +22,7 @@ export default function Router() {
       screenOptions={{
         headerShown: false,
       }}>
+        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Language" component={Language} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Employee" component={Employee} />
@@ -45,6 +46,8 @@ export default function Router() {
         <AuthNavigator.Screen name="Guest" component={Guest} />
         <AuthNavigator.Screen name="Feedback" component={Feedback} />
         <AuthNavigator.Screen name="Ratings" component={Ratings} />
+        <AuthNavigator.Screen name="Splash" component={Splash} />
+        <AuthNavigator.Screen name="Notes" component={Notes} />
       </AuthNavigator.Navigator>
     );
   }
@@ -56,7 +59,7 @@ export default function Router() {
         screenOptions={{
           headerShown: false,
         }}>
-        <HandleNavigation.Screen name="Splash" component={Splash} />
+        {/* <HandleNavigation.Screen name="Splash" component={Splash} /> */}
         <HandleNavigation.Screen name="AuthScreen" component={AuthScreen} />
       </HandleNavigation.Navigator>
     );

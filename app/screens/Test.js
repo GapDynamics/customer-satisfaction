@@ -1,73 +1,94 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions, TouchableOpacity, Text } from 'react-native';
-import { ProgressBar } from 'react-native-progress';
-import ViewPager from '@react-native-community/viewpager';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import Appheader from '../components/Appheader';
+import Textinputcomp from '../components/Textinputcom';
+import Logoheader from '../components/Logoheader';
 
-export default function Test() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const pageCount = 3; // Total number of pages
+export default function Test(props) {
+    const [notes, setNotes] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
 
-  const handlePageChange = (e) => {
-    setCurrentPage(e.nativeEvent.position);
-  };
+    const handleSubmission = () => {
+        // Handle submission logic here
+        console.log("Notes submitted:", notes);
+    };
 
-  const handleNextPage = () => {
-    if (currentPage < pageCount - 1) {
-      viewPagerRef.current.setPage(currentPage + 1);
-    }
-  };
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
 
-  const handlePrevPage = () => {
-    if (currentPage > 0) {
-      viewPagerRef.current.setPage(currentPage - 1);
-    }
-  };
+    const handleBlur = () => {
+        setIsFocused(false);
+    };
 
-  return (
-    <View style={{ flex: 1, backgroundColor: '#ffffff', justifyContent: 'center', alignItems: 'center' }}>
-      <View style={styles.progressBarContainer}>
-        <ProgressBar progress={(currentPage + 1) / pageCount} width={Dimensions.get('window').width - 40} />
-      </View>
-      <ViewPager style={styles.viewPager} onPageSelected={handlePageChange} initialPage={0}>
-        {/* Render your paginated views here */}
-        <View key="1" style={styles.pageContainer}>
-          <Text>Page 1</Text>
-        </View>
-        <View key="2" style={styles.pageContainer}>
-          <Text>Page 2</Text>
-        </View>
-        <View key="3" style={styles.pageContainer}>
-          <Text>Page 3</Text>
-        </View>
-      </ViewPager>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handlePrevPage} disabled={currentPage === 0}>
-          <Text>Prev</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleNextPage} disabled={currentPage === pageCount - 1}>
-          <Text>Next</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+    return (
+        <KeyboardAvoidingView
+            style={{flex: 1, backgroundColor: "#ffffff"}}
+            behavior={Platform.OS === "ios" ? "padding" : null}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100} // Adjust this value as needed
+        >
+            <View style={{flex: 1}}>
+            <Logoheader icn={"keyboard-backspace"} value={1}
+            // isLogo={true}
+            name={"Feedback"}
+            isLast={true}
+            Profilename={"Dev Moaz"}
+          imageUrl={require('../assets/images/profile1.png')}
+            />
+                <View style={styles.container}>
+                    <Text style={{ color: "black", paddingHorizontal: 14, fontWeight: "600" }}>Notes</Text>
+                    <TextInput
+                        style={[
+                            styles.textinput,
+                            { backgroundColor: "#FFFFFF", color: "#000000", borderColor: "#D7D7D7" },
+                            isFocused && { borderColor: "#605F9B" },
+                        ]}
+                        placeholder='If you have any additional feedback, please type it in here...hlo world'
+                        onChangeText={text => setNotes(text)}
+                        multiline
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        textAlignVertical='top'
+                    />
+                </View>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('Ratings')} style={styles.buttonContainer}>
+                    <View style={styles.button}>
+                        <Text style={{ color: "#ffffff" }}>Submit</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
+    );
 }
 
 const styles = StyleSheet.create({
-  progressBarContainer: {
-    marginBottom: 20,
-  },
-  viewPager: {
-    flex: 1,
-  },
-  pageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '50%',
-    marginTop: 20,
-  },
+    container: {
+        marginTop: 80,
+        marginHorizontal: 20,
+        alignSelf: "center",
+    },
+    buttonContainer: {
+        position: 'absolute',
+        bottom: 50,
+        alignSelf: 'center',
+    },
+    button: {
+        width: Dimensions.get('window').width * 0.95,
+        height: Dimensions.get('window').width * 0.045,
+        backgroundColor: "#004436",
+        borderRadius: 9,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 25,
+    },
+    textinput: {
+        backgroundColor: 'white',
+        width: Dimensions.get('window').width * 0.95,
+        height: Dimensions.get('window').width * 0.1,
+        borderRadius: 4,
+        paddingHorizontal: 14,
+        margin: 14,
+        borderWidth: 2,
+        borderColor: 'black',
+    },
 });

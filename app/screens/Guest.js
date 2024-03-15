@@ -1,16 +1,18 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import Appheader from '../components/Appheader'
 import Textinputcomp from '../components/Textinputcom'
+import Logoheader from '../components/Logoheader';
 
 export default function Guest() {
   const [employeeid, setEmpoyeeID] = useState('');
 
   return (
     <View style={{flex:1,backgroundColor:"#ffffff"}}>
-            <Appheader
-            name={"Identify Yourself"}
-            
+             <Logoheader icn={"keyboard-backspace"} value={2}
+            isLogo={true}
+            // name={"Feedback"}
+         
             />
             <View style={{ flex: 1,  justifyContent: "center", alignItems: "center" }}>
             <View style={styles.first}>

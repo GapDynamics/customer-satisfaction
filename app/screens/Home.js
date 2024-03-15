@@ -4,6 +4,7 @@ import Appheader from '../components/Appheader';
 import { useNavigation } from '@react-navigation/native';
 import Appbutton from '../components/Appbutton';
 import Logoheader from '../components/Logoheader';
+import Feedback from './Feedback';
 
 export default function Home(props) {
   const navigation = useNavigation();
@@ -12,15 +13,19 @@ export default function Home(props) {
   const handleContainerPress = (container) => {
     setSelectedContainer(container);
     if (container === 'Employee') {
-      navigation.navigate('Employee');
-    } else if (container === 'Guest') {
       navigation.navigate('Guest');
+    } else if (container === 'Guest') {
+      navigation.navigate('Employee');
     }
   };
 
   return (
     <View style={{ flex: 1,backgroundColor:"#ffffff" }}>
-            <Logoheader icn={"keyboard-backspace"} value={2} />
+            <Logoheader icn={"keyboard-backspace"} value={2}
+            isLogo={true}
+            // name={"Feedback"}
+         
+            />
       
       <View style={{ flex: 1, flexDirection: "row", margin: 10, justifyContent: "center", alignItems: "center" }}>
         <TouchableOpacity onPress={() => handleContainerPress('Employee')}>

@@ -3,49 +3,65 @@ import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image } from 'rea
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import Slider from '@react-native-community/slider';
-export default function Logoheader({ name, icn,value },props) {
-  
 
+export default function Logoheader({ name, icn, value, isLogo,isLast,Profilename,imageUrl }) {
     const navigation = useNavigation();
     const handleGoBack = () => {
         navigation.goBack();
     };
 
-
     return (
         <View style={styles.header}>
-            <View style={{flexDirection:"row"}}>
-            <View style={{
-                height: Dimensions.get('window').height * 0.15,
-                width: Dimensions.get('window').width * 0.05, backgroundColor: "#ffffff",
-                alignItems: "center", justifyContent: "center"
-            }}>
+            <View style={{ flexDirection: "row" }}>
+                {/* <View style={{
+                    height: Dimensions.get('window').height * 0.15,
+                    width: Dimensions.get('window').width * 0.05,
+                    backgroundColor: "#ffffff",
+                    alignItems: "center", justifyContent: "center"
+                }}>
+                    <TouchableOpacity onPress={handleGoBack}>
+                        <MaterialIcons name={icn} size={30} color={'#000000'} />
+                    </TouchableOpacity>
+                </View> */}
+                <View style={styles.header1}>
                 <TouchableOpacity onPress={handleGoBack}>
-                    <MaterialIcons name={icn} size={30} color={'#000000'} />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.header1}>
-<TouchableOpacity onPress={()=> navigation.navigate("Test")}>
-                <Image source={require('../assets/images/applogo.png')} 
-                style={{
-        //             height: Dimensions.get('window').height * 0.16,
-        width: Dimensions.get('window').width * 0.08,
-        resizeMode:"contain"
-                }}
-                />
-</TouchableOpacity>
-
-            </View>
+                        <MaterialIcons name={icn} size={30} color={'#000000'} />
+                    </TouchableOpacity>
+                    {isLogo ? (
+                        <TouchableOpacity onPress={() => navigation.navigate("Test")}>
+                            <Image source={require('../assets/images/applogo.png')}
+                                style={{
+                                    // height: Dimensions.get('window').height * 0.16,
+                                    width: Dimensions.get('window').width * 0.08,
+                                    resizeMode: "contain"
+                                }}
+                            />
+                        </TouchableOpacity>
+                    ) : (
+                        <Text style={{ fontSize: 25, color: "#000000", fontWeight: "bold",}}>{name}</Text>
+                    )}
+                         <View style={{ flexDirection: "row", alignItems: "center",justifyContent:"center" }}>
+                            <Text style={{color:"#000000"}}>{Profilename}</Text>
+                            <Image source={imageUrl}
+                                style={{
+                                    height: 20,
+                                    width: 20,
+                                    resizeMode: "contain",
+                                    marginLeft: 10
+                                }}
+                            />
+                        </View>
+                </View>
             </View>
 
             <Slider
                 style={{ width: "100%", height: 50 }}
                 minimumValue={0}
                 maximumValue={10}
-                minimumTrackTintColor="#605F9B"
-                maximumTrackTintColor="#605F9B"
-                thumbTintColor='#605F9B'
-                value={value||0.1}
+                minimumTrackTintColor="#004436"
+                maximumTrackTintColor="#004436"
+                thumbTintColor='#004436'
+                value={value || 0.1}
                 onValueChange={value => setRange(value)}
             />
         </View>
@@ -61,8 +77,12 @@ const styles = StyleSheet.create({
     },
     header1: {
         height: Dimensions.get('window').height * 0.15,
-        width: Dimensions.get('window').width * 0.9, backgroundColor: "#ffffff",
-        alignItems: "center", justifyContent: "center",
+        width: Dimensions.get('window').width * 1, 
+        backgroundColor: "#ffffff",
+        alignItems: "center", 
+        justifyContent: "space-between",
+        flexDirection:"row",
+        paddingHorizontal:25
         
     },
     strings: {

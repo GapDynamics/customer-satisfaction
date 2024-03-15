@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity,Image } from 'react-native';
 import Appheader from '../components/Appheader';
 import Textinputcomp from '../components/Textinputcom';
+import Logoheader from '../components/Logoheader';
 
 export default function Feedback(props) {
     const [selectedRating, setSelectedRating] = useState(null);
@@ -53,7 +54,11 @@ export default function Feedback(props) {
     }
     return (
         <View style={{ flex: 1,backgroundColor:"#ffffff" }}>
-            <Appheader name={"Add Notes"} />
+               <Logoheader icn={"keyboard-backspace"} value={2}
+            // isLogo={true}
+            name={"Feedback"}
+         
+            />
             {
                 loading?null:
             
@@ -65,32 +70,32 @@ export default function Feedback(props) {
                 <View style={{flexDirection:"row",width:Dimensions.get('window').width * 0.9,justifyContent:"space-between",paddingHorizontal:25}}>
                 <TouchableOpacity onPress={() => handleRatingPress(1)}>
                         <View style={[styles.firstcontainer, selectedRating === 1 && styles.selectedContainer]}>
-                        <Image source={require('../assets/images/Worst.png')} />
+                        <Image source={require('../assets/images/worst1.png')} />
                         <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Unsatisfactory</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleRatingPress(2)}>
                         <View style={[styles.firstcontainer, selectedRating === 2 && styles.selectedContainer]}>
-                        <Image source={require('../assets/images/blow.png')} />
+                        <Image source={require('../assets/images/blow1.png')} />
                         <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Below Exp</Text>
                     </View>
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress={() => handleRatingPress(3)}>
                         <View style={[styles.firstcontainer, selectedRating === 3 && styles.selectedContainer]}>
-                        <Image source={require('../assets/images/average.png')} />
+                        <Image source={require('../assets/images/average1.png')} />
                         <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Average</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleRatingPress(4)}>
                         <View style={[styles.firstcontainer, selectedRating === 4 && styles.selectedContainer]}>
-                        <Image source={require('../assets/images/good.png')} />
+                        <Image source={require('../assets/images/good1.png')} />
                         <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Good</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleRatingPress(5)}>
                         <View style={[styles.firstcontainer, selectedRating === 5 && styles.selectedContainer]}>
-                        <Image source={require('../assets/images/excelent.png')} />
+                        <Image source={require('../assets/images/excelent1.png')} />
                         <Text style={{ marginTop: 15, fontSize: 20, color: "#000000" }}>Excellent</Text>
                     </View>
                 </TouchableOpacity>

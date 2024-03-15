@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import Appheader from '../components/Appheader';
 import Textinputcomp from '../components/Textinputcom';
+import Logoheader from '../components/Logoheader';
 
 export default function Notes(props) {
     const [notes, setNotes] = useState('');
@@ -27,7 +28,13 @@ export default function Notes(props) {
             keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100} // Adjust this value as needed
         >
             <View style={{flex: 1}}>
-                <Appheader name={"Add Notes"} />
+            <Logoheader icn={"keyboard-backspace"} value={1}
+            // isLogo={true}
+            name={"Feedback"}
+            isLast={true}
+            Profilename={"Dev Moaz"}
+          imageUrl={require('../assets/images/profile1.png')}
+            />
                 <View style={styles.container}>
                     <Text style={{ color: "black", paddingHorizontal: 14, fontWeight: "600" }}>Notes</Text>
                     <TextInput
@@ -56,7 +63,7 @@ export default function Notes(props) {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 60,
+        marginTop: 80,
         marginHorizontal: 20,
         alignSelf: "center",
     },
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
     button: {
         width: Dimensions.get('window').width * 0.95,
         height: Dimensions.get('window').width * 0.045,
-        backgroundColor: "#605F9B",
+        backgroundColor: "#004436",
         borderRadius: 9,
         alignItems: "center",
         justifyContent: "center",
